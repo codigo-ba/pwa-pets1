@@ -1,14 +1,17 @@
 //pet-planner-pwa/src/views/SplashScreen.jsx
 import React from 'react';
+import './SplashScreen.css'; // Estilos separados para claridad
 
 const SplashScreen = () => {
   return (
-    <div style={{ textAlign: 'center', paddingTop: '50px' }}>
-      <img src="/logo.png" alt="Logo Pet Planner" style={{ width: '120px' }} />
-      <h1>🐾 Pet Planner</h1>
-      <p>Organizá la salud de tus mascotas. Sin conexión. Sin complicaciones.</p>
+    <div className="splash-container">
+      <img src="/splash-logo.png" alt="PetCare Planner Logo" className="splash-logo" />
+      <p className="splash-subtitle">
+        Organizá la salud de tus mascotas. Sin conexión. Sin complicaciones.
+      </p>
     </div>
   );
 };
 
 export default SplashScreen;
+

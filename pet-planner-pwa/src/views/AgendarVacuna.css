@@ -1,0 +1,36 @@
+.vacuna-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.vacuna-container label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.vacuna-container select,
+.vacuna-container input {
+  width: 80%;
+  max-width: 320px;
+  margin-top: 8px;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.vacuna-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #388e3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.vacuna-button:hover {
+  background-color: #2e7d32;
+}

@@ -1,0 +1,36 @@
+.desparasitacion-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.desparasitacion-container label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.desparasitacion-container input,
+.desparasitacion-container textarea {
+  width: 80%;
+  max-width: 320px;
+  margin-top: 8px;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.desparasitacion-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #f57c00;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.desparasitacion-button:hover {
+  background-color: #ef6c00;
+}

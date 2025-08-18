@@ -1,0 +1,22 @@
+.agendar-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.agendar-button {
+  display: block;
+  margin: 12px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 80%;
+  max-width: 320px;
+}
+
+.agendar-button:hover {
+  background-color: #1565c0;
+}

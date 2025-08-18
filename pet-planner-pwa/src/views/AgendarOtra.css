@@ -1,0 +1,36 @@
+.otra-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.otra-container label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.otra-container input,
+.otra-container textarea {
+  width: 80%;
+  max-width: 320px;
+  margin-top: 8px;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.otra-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #7b1fa2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.otra-button:hover {
+  background-color: #6a1b9a;
+}

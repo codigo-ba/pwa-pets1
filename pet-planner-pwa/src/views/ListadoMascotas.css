@@ -1,0 +1,56 @@
+/* 🐾 Estilos para la vista ListadoMascotas */
+
+.listado-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.mascotas-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.mascota-item {
+  margin-bottom: 20px;
+}
+
+.mascota-foto {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.boton-borrar {
+  margin-top: 8px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.boton-borrar:hover {
+  background-color: #b71c1c;
+}
+.mensaje-cargando {
+  font-style: italic;
+  color: #666;
+  margin: 20px 0;
+}
+
+.boton-volver {
+  margin-top: 30px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.boton-volver:hover {
+  background-color: #1565c0;
+}
