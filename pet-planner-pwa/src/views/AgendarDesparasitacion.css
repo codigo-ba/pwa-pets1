@@ -1,12 +1,26 @@
 .desparasitacion-container {
   text-align: center;
   padding: 40px;
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #fdf6f0; /* 🧼 Fondo neutro cálido */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 🪟 Elevación suave */
+}
+
+.desparasitacion-container h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .desparasitacion-container label {
   display: block;
   margin-top: 20px;
   font-weight: bold;
+  color: #444;
+  text-align: left;
+  margin-left: 10%;
 }
 
 .desparasitacion-container input,
@@ -14,23 +28,46 @@
   width: 80%;
   max-width: 320px;
   margin-top: 8px;
-  padding: 8px;
+  padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+
+.desparasitacion-container input:focus,
+.desparasitacion-container textarea:focus {
+  border-color: #f57c00; /* 🟠 Feedback visual */
+  outline: none;
+}
+
+.desparasitacion-container p {
+  font-size: 1rem;
+  margin: 8px 0;
+  color: #555;
 }
 
 .desparasitacion-button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 10px 24px;
   font-size: 1rem;
   background-color: #f57c00;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .desparasitacion-button:hover {
   background-color: #ef6c00;
+}
+
+.desparasitacion-button:active {
+  background-color: #e65100;
+}
+
+.desparasitacion-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

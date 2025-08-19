@@ -1,27 +1,40 @@
+//src/views/AgendarVacuna.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import db from '../db/db';
-import './AgendarVacuna.css';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { agregarActividad } from '../db/db'; // 📦 Persistencia modular
+import './AgendarVacuna.css'; // 🎨 Estilos específicos
 
 const AgendarVacuna = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const mascotaId = location.state?.mascotaId; // 📌 Recibido desde AgendarActividad
+
   const [tipo, setTipo] = useState('');
   const [fecha, setFecha] = useState('');
   const [confirmar, setConfirmar] = useState(false);
-  const navigate = useNavigate();
 
+  // 🧠 Guardar actividad con vínculo curatorial
   const handleGuardar = async () => {
+    if (!mascotaId) {
+      alert('Error: No se recibió el ID de mascota. Volvé a seleccionar una mascota.');
+      navigate('/bienvenida');
+      return;
+    }
+
     const actividad = {
+      mascotaId, // ✅ vínculo persistente
       tipo: 'Vacuna',
-      vacuna: tipo,
+      subtipo: tipo, // 🧬 Subtipo específico
       fecha,
     };
 
-    await db.actividades.add(actividad);
+    await agregarActividad(actividad);
 
     alert('Vacuna registrada con éxito.');
-    navigate('/bienvenida');
+    navigate('/bienvenida'); // 🔙 Redirigir a vista principal
   };
 
+  // 🧭 Vista inicial: ingreso de datos
   if (!confirmar) {
     return (
       <div className="vacuna-container">
@@ -37,7 +50,11 @@ const AgendarVacuna = () => {
         </select>
 
         <label>Fecha de aplicación:</label>
-        <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} />
+        <input
+          type="date"
+          value={fecha}
+          onChange={(e) => setFecha(e.target.value)}
+        />
 
         <button className="vacuna-button" onClick={() => setConfirmar(true)}>
           Confirmar datos
@@ -50,6 +67,7 @@ const AgendarVacuna = () => {
     );
   }
 
+  // ✅ Vista de confirmación antes de guardar
   return (
     <div className="vacuna-container">
       <h2>¿Confirmás los datos?</h2>

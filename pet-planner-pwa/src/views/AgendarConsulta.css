@@ -1,12 +1,26 @@
 .consulta-container {
   text-align: center;
   padding: 40px;
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #f9f9f9; /* 🧼 Fondo neutro */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 🪟 Elevación suave */
+}
+
+.consulta-container h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .consulta-container label {
   display: block;
   margin-top: 20px;
   font-weight: bold;
+  color: #444;
+  text-align: left;
+  margin-left: 10%;
 }
 
 .consulta-container input,
@@ -14,23 +28,46 @@
   width: 80%;
   max-width: 320px;
   margin-top: 8px;
-  padding: 8px;
+  padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+
+.consulta-container input:focus,
+.consulta-container textarea:focus {
+  border-color: #1976d2; /* 🔵 Feedback visual */
+  outline: none;
+}
+
+.consulta-container p {
+  font-size: 1rem;
+  margin: 8px 0;
+  color: #555;
 }
 
 .consulta-button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 10px 24px;
   font-size: 1rem;
   background-color: #1976d2;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .consulta-button:hover {
   background-color: #1565c0;
+}
+
+.consulta-button:active {
+  background-color: #0d47a1;
+}
+
+.consulta-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

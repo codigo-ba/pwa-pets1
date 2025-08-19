@@ -22,3 +22,9 @@
 .welcome-button:hover {
   background-color: #1565c0;
 }
+.mascotas-lista {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -1,27 +1,33 @@
-// src/views/ver-actividades.jsx
 import { useEffect, useState } from 'react';
-import { obtenerActividades, borrarActividad } from '../db/db';
-import './VerActividades.css';
-
+import { obtenerActividades, obtenerMascotas, borrarActividad } from '../db/db'; // 🧩 Acceso a datos
+import ActividadCard from '../components/ActividadCard'; // 🧱 Componente modular
+import './VerActividades.css'; // 🎨 Estilos locales
 
 export default function VerActividades() {
   const [actividades, setActividades] = useState([]);
+  const [mascotas, setMascotas] = useState([]); // 🐶 Estado para mascotas
 
   useEffect(() => {
-    cargarActividades();
+    cargarDatos();
   }, []);
 
-  const cargarActividades = async () => {
-    const data = await obtenerActividades();
-    setActividades(data);
+  const cargarDatos = async () => {
+    const acts = await obtenerActividades();
+    const masc = await obtenerMascotas();
+    setActividades(acts);
+    setMascotas(masc);
   };
 
   const handleBorrar = async (id) => {
     const confirmar = window.confirm('¿Eliminar esta actividad?');
     if (confirmar) {
       await borrarActividad(id);
-      await cargarActividades(); // recarga la lista
+      await cargarDatos(); // 🔄 Recarga ambas listas
     }
+  };
+
+  const obtenerNombreMascota = (id) => {
+    return mascotas.find((m) => m.id === id)?.nombre || 'Mascota desconocida';
   };
 
   return (
@@ -30,13 +36,19 @@ export default function VerActividades() {
       {actividades.length === 0 ? (
         <p>No hay actividades registradas.</p>
       ) : (
-        <ul>
-          {actividades.map((act) => (
-            <li key={act.id}>
-              <strong>{act.tipo}</strong> - {act.fecha}
-              <button onClick={() => handleBorrar(act.id)}>🗑️ Eliminar</button>
-            </li>
-          ))}
+        <ul className="actividades-lista">
+          {actividades.map((act) => {
+            const nombreMascota = obtenerNombreMascota(act.mascotaId);
+            return (
+              <li key={act.id} className="actividad-item">
+                <ActividadCard
+                  actividad={act}
+                  nombreMascota={nombreMascota}
+                  onBorrar={handleBorrar}
+                />
+              </li>
+            );
+          })}
         </ul>
       )}
     </section>

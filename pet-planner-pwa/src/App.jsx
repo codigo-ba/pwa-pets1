@@ -12,7 +12,8 @@ import AgendarVacuna from './views/AgendarVacuna.jsx';
 import AgendarDesparasitacion from './views/AgendarDesparasitacion.jsx';
 import AgendarOtra from './views/AgendarOtra.jsx';
 import VerActividades from './views/VerActividades.jsx';
-
+import SeleccionarMascota from './views/SeleccionarMascota.jsx';
+import ActividadesPorMascota from './views/ActividadesPorMascota.jsx';
 
 function App() {
   const [mostrarSplash, setMostrarSplash] = useState(true);
@@ -42,6 +43,8 @@ function App() {
         <Route path="/agendar-actividad/desparasitacion" element={<AgendarDesparasitacion />} />
         <Route path="/agendar-actividad/otra" element={<AgendarOtra />} />
         <Route path="/ver-actividades" element={<VerActividades />} />
+        <Route path="/seleccionar-mascota" element={<SeleccionarMascota />} />
+        <Route path="/actividades-mascota" element={<ActividadesPorMascota />} />
       </Route>
 
       {/* 🚪 Redirección desde raíz */}

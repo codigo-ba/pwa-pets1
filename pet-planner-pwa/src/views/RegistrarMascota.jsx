@@ -1,3 +1,4 @@
+//pet-planner/src/views/RegistrarMascota.jsx
 import React, { useState } from 'react';
 import db, { mascotaExiste } from '../db/db';
 import { useNavigate } from 'react-router-dom';
