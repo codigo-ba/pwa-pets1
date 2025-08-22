@@ -1,16 +1,22 @@
-//pet-planner-pwa/src/db/db.js
+// src/db/db.js
 import Dexie from 'dexie';
 
+// 🧱 Inicialización de la base de datos
 const db = new Dexie('PetPlannerDB');
 
-db.version(1).stores({
-  mascotas: '++id, nombre, foto',
-  actividades: '++id, mascotaId, tipo, fecha, notas'
+// 🧠 Versión 2: se agrega la store 'alertas' sin romper las existentes
+db.version(2).stores({
+  mascotas: '++id, nombre, foto', // 🐶 Datos de mascotas
+  actividades: '++id, mascotaId, tipo, fecha, notas, hora', // 📅 Actividades con hora incluida
+  alertas: '++id, actividadId, tipo, estado, fechaAlerta, mensaje, creadaEn' // 🚨 Alertas curatoriales
 });
 
 export default db;
 
+//
 // 🐶 Mascotas
+//
+
 export const agregarMascota = async (mascota) => {
   return await db.mascotas.add(mascota);
 };
@@ -28,7 +34,10 @@ export const borrarMascota = async (id) => {
   await db.mascotas.delete(id);
 };
 
+//
 // 📅 Actividades
+//
+
 export const agregarActividad = async (actividad) => {
   return await db.actividades.add(actividad);
 };
@@ -40,4 +49,3 @@ export const obtenerActividades = async () => {
 export const borrarActividad = async (id) => {
   await db.actividades.delete(id);
 };
-

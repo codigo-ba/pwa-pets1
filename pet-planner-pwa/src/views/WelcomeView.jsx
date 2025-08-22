@@ -51,6 +51,9 @@ const WelcomeView = () => {
       <button onClick={() => navigate('/ver-mascotas')} className="welcome-button">
         Ver mascotas registradas
       </button>
+      <button onClick={() => navigate('/alertas')} className="welcome-button">
+        Ver alertas
+      </button>
 
       {/* 🐾 Render dinámico de mascotas */}
       <div className="mascotas-lista">

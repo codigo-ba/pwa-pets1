@@ -2,6 +2,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import './MainLayout.css';
+import NotificadorActividades from './NotificadorActividades.jsx';
+
 
 const MainLayout = () => {
   return (
@@ -11,6 +13,7 @@ const MainLayout = () => {
       </header>
 
       <main className="layout-main">
+        <NotificadorActividades /> {/* 🔍 Escaneo silencioso al iniciar */}
         {/* Punto de inserción para las rutas hijas */}
         <Outlet />
       </main>

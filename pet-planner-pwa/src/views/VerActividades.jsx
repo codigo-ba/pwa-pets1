@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { obtenerActividades, obtenerMascotas, borrarActividad } from '../db/db'; // 🧩 Acceso a datos
+import { eliminarAlertasPorActividad } from '../db/alertas'; // 🧹 Sincronización curatorial
 import ActividadCard from '../components/ActividadCard'; // 🧱 Componente modular
 import './VerActividades.css'; // 🎨 Estilos locales
 
 export default function VerActividades() {
   const [actividades, setActividades] = useState([]);
-  const [mascotas, setMascotas] = useState([]); // 🐶 Estado para mascotas
+  const [mascotas, setMascotas] = useState([]);
 
   useEffect(() => {
     cargarDatos();
@@ -22,7 +23,8 @@ export default function VerActividades() {
     const confirmar = window.confirm('¿Eliminar esta actividad?');
     if (confirmar) {
       await borrarActividad(id);
-      await cargarDatos(); // 🔄 Recarga ambas listas
+      await eliminarAlertasPorActividad(id); // 🧹 Elimina alertas asociadas
+      await cargarDatos();
     }
   };
 

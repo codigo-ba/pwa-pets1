@@ -1,6 +1,8 @@
+//src/views/AgendarDesparasitacion
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { agregarActividad } from '../db/db'; // 📦 Persistencia modular
+import { generarAlertaDesdeActividad } from '../db/alertas'; // 🚨 Generación curatorial
 import './AgendarDesparasitacion.css'; // 🎨 Estilos específicos
 
 const AgendarDesparasitacion = () => {
@@ -13,7 +15,7 @@ const AgendarDesparasitacion = () => {
   const [notas, setNotas] = useState('');
   const [confirmar, setConfirmar] = useState(false);
 
-  // 🧠 Guardar actividad con vínculo curatorial
+  // 🧠 Guardar actividad con vínculo curatorial y generar alerta
   const handleGuardar = async () => {
     if (!mascotaId) {
       alert('Error: No se recibió el ID de mascota. Volvé a seleccionar una mascota.');
@@ -21,15 +23,21 @@ const AgendarDesparasitacion = () => {
       return;
     }
 
+    // 🧩 Construcción del objeto actividad
     const actividad = {
       mascotaId, // ✅ vínculo persistente
-      tipo: 'Desparasitación',
+      tipo: 'Desparasitación', // 🐛 Tipo definido por esta vista
       fecha,
       hora,
       notas,
     };
 
-    await agregarActividad(actividad);
+    // 💾 Persistencia y recuperación de ID generado
+    const idGenerado = await agregarActividad(actividad);
+    const actividadConId = { ...actividad, id: idGenerado };
+
+    // 🚨 Generación curatorial de alerta vinculada
+    await generarAlertaDesdeActividad(actividadConId);
 
     alert('La fecha fue agendada con éxito.');
     alert('No olvides que las desparasitaciones tienen un tiempo de utilidad. ¡Revisá la próxima fecha!');

@@ -14,6 +14,8 @@ import AgendarOtra from './views/AgendarOtra.jsx';
 import VerActividades from './views/VerActividades.jsx';
 import SeleccionarMascota from './views/SeleccionarMascota.jsx';
 import ActividadesPorMascota from './views/ActividadesPorMascota.jsx';
+import Alertas from './views/Alertas.jsx';
+import NotificadorActividades from './components/NotificadorActividades.jsx';
 
 function App() {
   const [mostrarSplash, setMostrarSplash] = useState(true);
@@ -31,35 +33,39 @@ function App() {
   }
 
   return (
-    <Routes>
-      {/* 🧱 Rutas anidadas dentro del layout principal */}
-      <Route element={<MainLayout />}>
-        <Route path="/bienvenida" element={<WelcomeView />} />
-        <Route path="/registrar-mascota" element={<RegistrarMascota />} />
-        <Route path="/ver-mascotas" element={<ListadoMascotas />} />
-        <Route path="/agendar-actividad" element={<AgendarActividad />} />
-        <Route path="/agendar-actividad/consulta" element={<AgendarConsulta />} />
-        <Route path="/agendar-actividad/vacuna" element={<AgendarVacuna />} />
-        <Route path="/agendar-actividad/desparasitacion" element={<AgendarDesparasitacion />} />
-        <Route path="/agendar-actividad/otra" element={<AgendarOtra />} />
-        <Route path="/ver-actividades" element={<VerActividades />} />
-        <Route path="/seleccionar-mascota" element={<SeleccionarMascota />} />
-        <Route path="/actividades-mascota" element={<ActividadesPorMascota />} />
-      </Route>
+    <>
+      
+      <Routes>
+        {/* 🧱 Rutas anidadas dentro del layout principal */}
+        <Route element={<MainLayout />}>
+          <Route path="/bienvenida" element={<WelcomeView />} />
+          <Route path="/registrar-mascota" element={<RegistrarMascota />} />
+          <Route path="/ver-mascotas" element={<ListadoMascotas />} />
+          <Route path="/agendar-actividad" element={<AgendarActividad />} />
+          <Route path="/agendar-actividad/consulta" element={<AgendarConsulta />} />
+          <Route path="/agendar-actividad/vacuna" element={<AgendarVacuna />} />
+          <Route path="/agendar-actividad/desparasitacion" element={<AgendarDesparasitacion />} />
+          <Route path="/agendar-actividad/otra" element={<AgendarOtra />} />
+          <Route path="/ver-actividades" element={<VerActividades />} />
+          <Route path="/seleccionar-mascota" element={<SeleccionarMascota />} />
+          <Route path="/actividades-mascota" element={<ActividadesPorMascota />} />
+          <Route path="/alertas" element={<Alertas />} />
+        </Route>
 
-      {/* 🚪 Redirección desde raíz */}
-      <Route path="/" element={<Navigate to="/bienvenida" />} />
+        {/* 🚪 Redirección desde raíz */}
+        <Route path="/" element={<Navigate to="/bienvenida" />} />
 
-      {/* ❓ Ruta no encontrada */}
-      <Route
-        path="*"
-        element={
-          <div className="ruta-no-encontrada">
-            Ruta no encontrada.
-          </div>
-        }
-      />
-    </Routes>
+        {/* ❓ Ruta no encontrada */}
+        <Route
+          path="*"
+          element={
+            <div className="ruta-no-encontrada">
+              Ruta no encontrada.
+            </div>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

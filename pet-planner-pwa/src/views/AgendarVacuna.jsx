@@ -1,7 +1,7 @@
-//src/views/AgendarVacuna.jsx
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { agregarActividad } from '../db/db'; // 📦 Persistencia modular
+import { generarAlertaDesdeActividad } from '../db/alertas'; // 🚨 Generación curatorial
 import './AgendarVacuna.css'; // 🎨 Estilos específicos
 
 const AgendarVacuna = () => {
@@ -13,7 +13,7 @@ const AgendarVacuna = () => {
   const [fecha, setFecha] = useState('');
   const [confirmar, setConfirmar] = useState(false);
 
-  // 🧠 Guardar actividad con vínculo curatorial
+  // 🧠 Guardar actividad con vínculo curatorial y generar alerta
   const handleGuardar = async () => {
     if (!mascotaId) {
       alert('Error: No se recibió el ID de mascota. Volvé a seleccionar una mascota.');
@@ -21,6 +21,7 @@ const AgendarVacuna = () => {
       return;
     }
 
+    // 🧩 Construcción del objeto actividad
     const actividad = {
       mascotaId, // ✅ vínculo persistente
       tipo: 'Vacuna',
@@ -28,7 +29,12 @@ const AgendarVacuna = () => {
       fecha,
     };
 
-    await agregarActividad(actividad);
+    // 💾 Persistencia y recuperación de ID generado
+    const idGenerado = await agregarActividad(actividad);
+    const actividadConId = { ...actividad, id: idGenerado };
+
+    // 🚨 Generación curatorial de alerta vinculada
+    await generarAlertaDesdeActividad(actividadConId);
 
     alert('Vacuna registrada con éxito.');
     navigate('/bienvenida'); // 🔙 Redirigir a vista principal
