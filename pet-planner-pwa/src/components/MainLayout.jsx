@@ -9,7 +9,11 @@ const MainLayout = () => {
   return (
     <div className="layout-container">
       <header className="layout-header">
-        <h1>Pet Planner</h1>
+        <img
+        src="/splash-logo.png"
+        alt="PetCare Planner Logo"
+        className="splash-logo"
+      />
       </header>
 
       <main className="layout-main">

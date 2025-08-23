@@ -1,18 +1,22 @@
+// src/views/WelcomeView.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { obtenerMascotas } from '../db/db'; // 🐾 Acceso a la base local
 import MascotaCard from '../components/MascotaCard'; // 🧩 Componente modular
-import './WelcomeView.css'; // 🎨 Estilos externos
+import Loader from '../components/Loader'; // ⏳ Componente de carga visual
 
 const WelcomeView = () => {
   const navigate = useNavigate();
   const [mascotas, setMascotas] = useState([]);
+  const [cargando, setCargando] = useState(true); // ⏳ Estado de carga inicial
 
   // 🧠 Cargar mascotas al montar
   useEffect(() => {
     const cargarMascotas = async () => {
+      setCargando(true); // 🔄 Activa loader
       const data = await obtenerMascotas();
       setMascotas(data);
+      setCargando(false); // ✅ Finaliza carga
     };
     cargarMascotas();
   }, []);
@@ -33,31 +37,34 @@ const WelcomeView = () => {
   };
 
   return (
-    <div className="welcome-container">
-      <h2>¿Qué querés hacer?</h2>
+    <div className="contenedor">
+      <h2 className="titulo">¿Qué querés hacer?</h2>
 
-      <button onClick={() => navigate('/registrar-mascota')} className="welcome-button">
-        Registrar una mascota
+      <button onClick={() => navigate('/registrar-mascota')} className="boton boton-verde">
+        Registrá una mascota
       </button>
 
-      <button onClick={handleAgendarActividad} className="welcome-button">
-        Agendar una actividad
+      <button onClick={handleAgendarActividad} className="boton boton-naranja">
+        Agendá una actividad
       </button>
 
-      <button onClick={() => navigate('/ver-actividades')} className="welcome-button">
-        Ver actividades guardadas
+      <button onClick={() => navigate('/ver-actividades')} className="boton boton-naranja-light">
+        Actividades guardadas
       </button>
 
-      <button onClick={() => navigate('/ver-mascotas')} className="welcome-button">
-        Ver mascotas registradas
+      <button onClick={() => navigate('/ver-mascotas')} className="boton boton-verde-light">
+        Mascotas registradas
       </button>
-      <button onClick={() => navigate('/alertas')} className="welcome-button">
+
+      {/*<button onClick={() => navigate('/alertas')} className="boton boton-rojo">
         Ver alertas
-      </button>
+      </button>*/}
 
-      {/* 🐾 Render dinámico de mascotas */}
-      <div className="mascotas-lista">
-        {mascotas.length === 0 ? (
+      {/* 🐾 Render dinámico de mascotas con loader */}
+      <div className="card">
+        {cargando ? (
+          <Loader mensaje="Cargando mascotas..." />
+        ) : mascotas.length === 0 ? (
           <MascotaCard mascota={{ id: 0, nombre: 'Tu mascota', foto: '/default-pet.png' }} />
         ) : (
           mascotas.map((m) => <MascotaCard key={m.id} mascota={m} />)

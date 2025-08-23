@@ -5,7 +5,7 @@ import WelcomeView from './views/WelcomeView.jsx';
 import RegistrarMascota from './views/RegistrarMascota.jsx';
 import ListadoMascotas from './views/ListadoMascotas.jsx';
 import MainLayout from './components/MainLayout.jsx';
-import './App.css'; // 🎨 Estilos globales
+import './App.css';
 import AgendarActividad from './views/AgendarActividad.jsx';
 import AgendarConsulta from './views/AgendarConsulta.jsx';
 import AgendarVacuna from './views/AgendarVacuna.jsx';

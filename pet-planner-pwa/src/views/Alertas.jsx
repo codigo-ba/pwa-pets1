@@ -1,5 +1,7 @@
-//src/views/Alertas.jsx
+// src/views/Alertas.jsx
+
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // 🧭 Navegación curatorial
 import {
   obtenerAlertas,
   borrarAlerta,
@@ -10,6 +12,7 @@ import './Alertas.css'; // 🎨 Estilos específicos
 
 const Alertas = () => {
   const [alertas, setAlertas] = useState([]);
+  const navigate = useNavigate(); // 🧭 Hook de navegación
 
   // 🔄 Cargar alertas al montar
   useEffect(() => {
@@ -78,6 +81,11 @@ const Alertas = () => {
           })}
         </ul>
       )}
+
+      {/* 🔙 Botón para volver a vista de bienvenida */}
+      <button className="boton-volver" onClick={() => navigate('/bienvenida')}>
+        Volver
+      </button>
     </div>
   );
 };

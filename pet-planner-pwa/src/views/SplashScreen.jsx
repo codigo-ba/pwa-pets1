@@ -1,17 +1,24 @@
-//pet-planner-pwa/src/views/SplashScreen.jsx
+//src/views/SplashScree,jsx
 import React from 'react';
-import './SplashScreen.css'; // Estilos separados para claridad
+import './SplashScreen.css'; // 🎨 Estilos separados para claridad
 
 const SplashScreen = () => {
   return (
     <div className="splash-container">
-      <img src="/splash-logo.png" alt="PetCare Planner Logo" className="splash-logo" />
-      <p className="splash-subtitle">
-        Organizá la salud de tus mascotas. Sin conexión. Sin complicaciones.
-      </p>
+      {/* 🐾 Logo animado con escala y giro */}
+      <img
+        src="/splash-logo.png"
+        alt="PetCare Planner Logo"
+        className="splash-logo"
+      />
+
+      {/* 📝 Subtítulo dividido en dos oraciones con animación secuencial */}
+      <div className="splash-subtitle">
+        <p className="linea uno">Organizá la salud de tus mascotas.</p>
+        <p className="linea dos">Todas sus actividades <span className="naranja-animada">en un solo lugar</span>.</p>
+      </div>
     </div>
   );
 };
 
 export default SplashScreen;
-

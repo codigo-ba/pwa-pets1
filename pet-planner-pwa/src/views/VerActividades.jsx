@@ -1,4 +1,7 @@
+// src/views/VerActividades.jsx
+
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // 🧭 Navegación curatorial
 import { obtenerActividades, obtenerMascotas, borrarActividad } from '../db/db'; // 🧩 Acceso a datos
 import { eliminarAlertasPorActividad } from '../db/alertas'; // 🧹 Sincronización curatorial
 import ActividadCard from '../components/ActividadCard'; // 🧱 Componente modular
@@ -7,6 +10,7 @@ import './VerActividades.css'; // 🎨 Estilos locales
 export default function VerActividades() {
   const [actividades, setActividades] = useState([]);
   const [mascotas, setMascotas] = useState([]);
+  const navigate = useNavigate(); // 🧭 Hook de navegación
 
   useEffect(() => {
     cargarDatos();
@@ -53,6 +57,11 @@ export default function VerActividades() {
           })}
         </ul>
       )}
+
+      {/* 🔙 Botón para volver a vista de bienvenida */}
+      <button className="boton-volver" onClick={() => navigate('/bienvenida')}>
+        Volver
+      </button>
     </section>
   );
 }
